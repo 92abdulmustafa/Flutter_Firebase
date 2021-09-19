@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:firebase_class/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,15 +20,6 @@ class MyApp extends StatelessWidget {
       // Initialize FlutterFire:
       future: _initialization,
       builder: (context, snapshot) {
-        // Check for errors
-        if (snapshot.hasError) {
-          return Container(
-            width: 300,
-            height: 200,
-            color: Colors.blue,
-           
-          );
-        }
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
@@ -37,6 +30,17 @@ class MyApp extends StatelessWidget {
             ),
           );
         }
+        // Check for errors
+        if (snapshot.hasError) {
+          print(snapshot.error);
+          return Container(
+            width: 300,
+            height: 200,
+            color: Colors.blue,
+            child: Text('${snapshot.error}'),
+          );
+        }
+
 
         // Otherwise, show something whilst waiting for initialization to complete
         return Container(
