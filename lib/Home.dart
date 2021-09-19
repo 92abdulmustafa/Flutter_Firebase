@@ -32,37 +32,37 @@ class _RegisterationState extends State<Registeration> {
             .collection("users")
             .doc(user.user!.uid)
             .set({"email": email, "username": username});
-       setState(() {
+        setState(() {
           showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Register'),
-        content: SingleChildScrollView(
-          child: ListBody(
-            children: const <Widget>[
-              Text('Registered'),
-              Text('Would you like to approve of this message?'),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('OK'),
-            onPressed: () {
-              Navigator.of(context).pop();
+            context: context,
+            barrierDismissible: false, // user must tap button!
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Register'),
+                content: SingleChildScrollView(
+                  child: ListBody(
+                    children: const <Widget>[
+                      Text('Registered'),
+                      Text('Would you like to approve of this message?'),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text('OK'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
             },
-          ),
-        ],
-      );
-    },
-  );
- });
+          );
+        });
         print("User registered");
-      } catch (e) {}
-
-      print("error");
+      } catch (e) {
+        print("error");
+      }
     }
 
     void login() async {
@@ -110,7 +110,6 @@ class _RegisterationState extends State<Registeration> {
       } catch (e) {
         print("error");
       }
-      
     }
 
     return Scaffold(
@@ -167,12 +166,11 @@ class _RegisterationState extends State<Registeration> {
                   child: SizedBox(
                     width: 350,
                     child: TextFormField(
-                      obscureText: true,
+                        obscureText: true,
                         controller: passwordcontroller,
                         decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: 'Enter your Password',
-                          
                           icon: Icon(
                             Icons.password,
                             color: Colors.teal,
